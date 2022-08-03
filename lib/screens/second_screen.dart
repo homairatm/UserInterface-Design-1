@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import '../utilities/widgets/list_view_container.dart';
 import 'home_screen.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -15,10 +16,10 @@ class _SecondScreenState extends State<SecondScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red.shade50,
-
-
       bottomNavigationBar: const GNav(
         backgroundColor: Colors.white,
+        tabBackgroundColor: Colors.deepOrangeAccent,
+        activeColor: Colors.white,
         color: Colors.grey,
         padding: EdgeInsets.all(15.0),
         tabs: [
@@ -86,7 +87,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           CircleAvatar(
                             radius: 75,
                             backgroundImage: NetworkImage(
-                                'https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png'),
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOJRHQZ5QSiy_HBVrnDrzSgtEP4Uvk5iZNCxzvZf5amLu_7TUl2iUfJuVbvbsdNAscOeU&usqp=CAU'),
                           ),
                           SizedBox(height: 35),
                           Text(
@@ -182,9 +183,10 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
             Expanded(
               flex: 2,
-              child: Container(
-
-              ),
+              child: ListView.builder(
+                  itemBuilder: (context, index){
+                return ListViewContainer();
+              }),
             )
           ],
         ),
