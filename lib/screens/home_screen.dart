@@ -1,5 +1,6 @@
 import 'package:bracit_task1/screens/second_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,10 +9,9 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-
-List name = ['Johny' , 'Tony' , 'Tom' , 'Sunny', 'Anny', 'Bunny','Cherry'];
-List followers = ['1012' , '5234' , '3254' , '1657','5765','67576','6454'];
-List profileImage= [
+List name = ['Johny', 'Tony', 'Tom', 'Sunny', 'Anny', 'Bunny', 'Cherry'];
+List followers = ['1012', '5234', '3254', '1657', '5765', '67576', '6454'];
+List profileImage = [
   'https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png',
   'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png',
   'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimg.freepik.com%2Fpremium-vector%2Fportrait-young-man-with-beard-hair-style-male-avatar-vector-illustration_266660-423.jpg%3Fw%3D2000&imgrefurl=https%3A%2F%2Fwww.freepik.com%2Fpremium-vector%2Fportrait-young-man-with-beard-hair-style-male-avatar-vector-illustration_19282811.htm&tbnid=tqZuBfz7g4am3M&vet=10CAMQxiAoAGoXChMIqKy4m-ip-QIVAAAAAB0AAAAAEAc..i&docid=5vlSWlBe2QU8-M&w=2000&h=2000&itg=1&q=person%20avatar%20images&ved=0CAMQxiAoAGoXChMIqKy4m-ip-QIVAAAAAB0AAAAAEAc',
@@ -21,11 +21,43 @@ List profileImage= [
   'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2014%2F03%2F24%2F17%2F19%2Fteacher-295387_960_720.png&imgrefurl=https%3A%2F%2Fpixabay.com%2Fvectors%2Fteacher-female-woman-girl-avatar-295387%2F&tbnid=6-MfUl0HRi7umM&vet=12ahUKEwi8gaLw9Kn5AhXdZWwGHS7wAw4QxiAoBHoECAAQFQ..i&docid=KBP_bLE1GD5_dM&w=746&h=720&itg=1&q=person%20avatar%20images&ved=2ahUKEwi8gaLw9Kn5AhXdZWwGHS7wAw4QxiAoBHoECAAQFQ'
 ];
 
-
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red.shade50,
+
+
+      bottomNavigationBar: const GNav(
+        backgroundColor: Colors.white,
+        color: Colors.grey,
+        padding: EdgeInsets.all(15.0),
+        tabs: [
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Icons.location_on_outlined,
+            text: 'Location',
+          ),
+          GButton(
+            icon: Icons.calendar_today_outlined,
+            text: 'Calender',
+          ),
+          GButton(
+            icon: Icons.people,
+            text: 'Contact',
+          ),
+          GButton(
+            icon: Icons.bookmark,
+            text: 'Save',
+          ),
+        ],
+      ),
+
+
+
       body: SafeArea(
         child: Column(
           children: [
@@ -37,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     foregroundDecoration: const BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              'https://img.freepik.com/free-vector/abstract-low-poly-orange-yellow-background_1017-32111.jpg'),
+                              'https://img.freepik.com/free-vector/orange-pink-watercolor-background_125540-1090.jpg?w=2000'),
                           fit: BoxFit.fill),
                     ),
                   ),
@@ -78,30 +110,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-             Expanded(
-                flex: 3,
-                child: ListView.builder(
-                  itemCount: 7,
-                  itemBuilder: (context, index) {
-
+            Expanded(
+              flex: 3,
+              child: ListView.builder(
+                itemCount: 7,
+                itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SecondScreen();
-                      },));
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return SecondScreen();
+                        },
+                      ));
                     },
-
-
                     child: PersonInfo(
-                        follower: followers[index],
-                        name: name[index],
-                        url: profileImage[index],
-                      ),
+                      follower: followers[index],
+                      name: name[index],
+                      url: profileImage[index],
+                    ),
                   );
-
-                },),
-
-             ),
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -110,13 +140,15 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class PersonInfo extends StatelessWidget {
-
   final String url;
   final String name;
   final String follower;
 
   const PersonInfo({
-    Key? key, required this.url, required this.name, required this.follower,
+    Key? key,
+    required this.url,
+    required this.name,
+    required this.follower,
   }) : super(key: key);
 
   @override
@@ -130,24 +162,30 @@ class PersonInfo extends StatelessWidget {
             children: [
               Row(
                 children: [
-                   CircleAvatar(
+                  CircleAvatar(
                     radius: 30,
                     backgroundImage: NetworkImage(
-                     url,
+                      url,
                     ),
                   ),
-                  const SizedBox(width: 20,),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
-                      Text(name,
+                    children: [
+                      Text(
+                        name,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 5,),
-                      Text('${follower} followers',
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '${follower} followers',
                         style: const TextStyle(
                           color: Colors.grey,
                         ),

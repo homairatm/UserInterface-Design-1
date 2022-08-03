@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'home_screen.dart';
 
@@ -13,18 +14,48 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red.shade50,
+
+
+      bottomNavigationBar: const GNav(
+        backgroundColor: Colors.white,
+        color: Colors.grey,
+        padding: EdgeInsets.all(15.0),
+        tabs: [
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Icons.location_on_outlined,
+            text: 'Location',
+          ),
+          GButton(
+            icon: Icons.calendar_today_outlined,
+            text: 'Calender',
+          ),
+          GButton(
+            icon: Icons.people,
+            text: 'Contact',
+          ),
+          GButton(
+            icon: Icons.bookmark,
+            text: 'Save',
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Stack(
                 children: [
                   Container(
                     foregroundDecoration: const BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              'https://img.freepik.com/free-vector/abstract-low-poly-orange-yellow-background_1017-32111.jpg'),
+                              'https://img.freepik.com/free-vector/orange-pink-watercolor-background_125540-1090.jpg?w=2000'),
                           fit: BoxFit.fill),
                     ),
                   ),
@@ -40,10 +71,6 @@ class _SecondScreenState extends State<SecondScreen> {
                               Icons.arrow_back_ios_new,
                               color: Colors.white,
                               size: 25,
-
-
-
-
                             ),
                             Icon(
                               Icons.message_outlined,
@@ -57,7 +84,7 @@ class _SecondScreenState extends State<SecondScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           CircleAvatar(
-                            radius: 60,
+                            radius: 75,
                             backgroundImage: NetworkImage(
                                 'https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png'),
                           ),
