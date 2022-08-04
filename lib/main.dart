@@ -1,5 +1,6 @@
 
 import 'package:bracit_task1/screens/home_screen.dart';
+import 'package:bracit_task1/screens/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const MainPage(),
     );
   }
 }

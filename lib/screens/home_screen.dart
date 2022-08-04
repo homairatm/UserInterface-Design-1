@@ -1,6 +1,5 @@
 import 'package:bracit_task1/screens/second_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:bracit_task1/model/search.dart';
 
 import '../model/person.dart';
@@ -21,90 +20,14 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  int currentIndex = 0;
-  final pages = [
-    Center(child: Text('Home', style: TextStyle(fontSize: 60),),),
-    Center(child: Text('Location', style: TextStyle(fontSize: 60),),),
-    Center(child: Text('Date and Time', style: TextStyle(fontSize: 60),),),
-    Center(child: Text('Contact', style: TextStyle(fontSize: 60),),),
-    Center(child: Text('Save', style: TextStyle(fontSize: 60),),),
 
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset : false,
       backgroundColor: Colors.red.shade50,
 
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.red.shade200,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white54,
-        showUnselectedLabels: false,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items:  const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-
-            //backgroundColor: Colors.red.shade200,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_on),
-            label: 'Location',
-            //backgroundColor: Colors.yellow.shade900,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_outlined),
-            label: 'Calender',
-            //backgroundColor: Colors.red.shade200,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_alt_rounded),
-            label: 'Contact',
-           // backgroundColor: Colors.yellow.shade900,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Save',
-            //backgroundColor: Colors.red.shade200,
-          ),
-
-        ],
-      ),
-
-      // bottomNavigationBar: const GNav(
-      //   backgroundColor: Colors.white,
-      //   tabBackgroundColor: Colors.deepOrangeAccent,
-      //   activeColor: Colors.white,
-      //   color: Colors.grey,
-      //   padding: EdgeInsets.all(15.0),
-      //   tabs: [
-      //     GButton(
-      //       icon: Icons.home,
-      //       text: 'Home',
-      //     ),
-      //     GButton(
-      //       icon: Icons.location_on_outlined,
-      //       text: 'Location',
-      //     ),
-      //     GButton(
-      //       icon: Icons.calendar_today_outlined,
-      //       text: 'Calender',
-      //     ),
-      //     GButton(
-      //       icon: Icons.people,
-      //       text: 'Contact',
-      //     ),
-      //     GButton(
-      //       icon: Icons.bookmark,
-      //       text: 'Save',
-      //     ),
-      //   ],
-      // ),
 
       body: SafeArea(
         child: Column(
