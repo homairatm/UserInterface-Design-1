@@ -12,11 +12,10 @@ class SecondScreen extends StatefulWidget {
 class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
-    // DateTime now = DateTime.now();
-    // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
+     DateTime now = DateTime.now();
+     String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
     return Scaffold(
       backgroundColor: Colors.red.shade50,
-
 
 
       body: SafeArea(
@@ -67,7 +66,7 @@ class _SecondScreenState extends State<SecondScreen> {
                             CircleAvatar(
                               radius: 65,
                               backgroundImage: NetworkImage(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOJRHQZ5QSiy_HBVrnDrzSgtEP4Uvk5iZNCxzvZf5amLu_7TUl2iUfJuVbvbsdNAscOeU&usqp=CAU'),
+                                  'https://img.favpng.com/10/23/1/computer-icons-user-profile-avatar-png-favpng-ypy9BWih5X28x0zDEBeemwyx8_t.jpg'),
                             ),
                             SizedBox(height: 20),
                             Text(
@@ -218,33 +217,33 @@ class _SecondScreenState extends State<SecondScreen> {
                             const CircleAvatar(
                               radius: 40,
                               backgroundImage: NetworkImage(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOJRHQZ5QSiy_HBVrnDrzSgtEP4Uvk5iZNCxzvZf5amLu_7TUl2iUfJuVbvbsdNAscOeU&usqp=CAU'),
+                                  'https://img.favpng.com/10/23/1/computer-icons-user-profile-avatar-png-favpng-ypy9BWih5X28x0zDEBeemwyx8_t.jpg'),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
+                              children:  [
+                                const Text(
                                   'Hillsong Evening College, UK',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black54,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   '2016/2017',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.black54,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
-                                  'Mon, 17 Oct, 16:00',
+                                  formattedDate,
                                   style: const TextStyle(
                                     fontSize: 15,
                                     color: Colors.black45,
@@ -295,32 +294,33 @@ class _SecondScreenState extends State<SecondScreen> {
                               backgroundImage: NetworkImage(
                                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpDMFCYnAANPd4Va-6MvrhtxYc9XxUlGxYShAa2UkUO2KHAiidrMFjgEKlB3zoAc1qFao&usqp=CAU'),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
+                              children:  [
+                                const Text(
                                   'Hillsong Evening College, UK',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black54,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   '2016/2017',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.black54,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
-                                  'Mon, 17 Oct, 16:00',
-                                  style: TextStyle(
+                                  formattedDate,
+
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Colors.black45,
                                   ),
