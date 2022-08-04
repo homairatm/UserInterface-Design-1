@@ -1,5 +1,4 @@
 
-
 import 'package:bracit_task1/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,4 +22,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
