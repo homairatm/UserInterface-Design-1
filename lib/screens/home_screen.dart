@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'package:bracit_task1/screens/second_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bracit_task1/model/search.dart';
-
+import 'package:http/http.dart' as http;
+import '../model/UserModel.dart';
 import '../model/person.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,18 +14,37 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  UserModel? userModel;
   TextEditingController keyboardController = TextEditingController();
 
   @override
   void initState() {
-    searchedList = personList;
+    initFunction();
     super.initState();
   }
 
+  Future<UserModel?> fetchData() async {
+    final response =
+    await http.get(Uri.parse('https://reqres.in/api/users?page=2'));
+    print('This is Response: ${response.body.toString()}');
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(jsonDecode(response.body));
+    } else {
+      return throw Exception('Failed to load album');
+    }
+  }
+
+  void initFunction() async {
+    UserModel? data = await fetchData();
+    setState(() {
+      userModel = data;
+    });
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    // print('user list data + ${futureUser.toString()}');
     return Scaffold(
       resizeToAvoidBottomInset : false,
       backgroundColor: Colors.red.shade50,
@@ -98,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               flex: 3,
               child: ListView.builder(
-                itemCount: searchedList.length,
+                itemCount: userModel!.data!.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
@@ -109,9 +130,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ));
                     },
                     child: PersonInfo(
-                      follower: searchedList[index].followers,
-                      name: searchedList[index].name,
-                      url: searchedList[index].profile,
+                      follower: userModel!.data![index].id.toString(),
+                      name: userModel!.data![index].firstName.toString(),
+                      url: userModel!.data![index].avatar.toString(),
                     ),
                   );
                 },

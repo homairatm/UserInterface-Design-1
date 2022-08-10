@@ -2,6 +2,7 @@
 import 'package:bracit_task1/screens/home_screen.dart';
 import 'package:bracit_task1/screens/main_page.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const MainPage(),
+      //home: const MainPage(),
+      home: MainPage(),
     );
   }
 }
