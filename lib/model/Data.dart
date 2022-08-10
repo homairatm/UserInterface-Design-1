@@ -13,11 +13,11 @@ class Data {
     lastName = json['last_name'];
     avatar = json['avatar'];
   }
-  int id;
-  String email;
-  String firstName;
-  String lastName;
-  String avatar;
+  int? id;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? avatar;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // print('user list data + ${futureUser.toString()}');
     return Scaffold(
       resizeToAvoidBottomInset : false,
-      backgroundColor: Colors.red.shade50,
+      backgroundColor: Colors.teal.shade50,
 
 
       body: SafeArea(
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     foregroundDecoration: const BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              'https://img.freepik.com/free-vector/orange-pink-watercolor-background_125540-1090.jpg?w=2000'),
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX7F1RisssddR7YffMy81PEYBkxYFwv8fLOiPFUOo7p_Q7pNCjgOSZFr9fdUwo6FX-aTQ&usqp=CAU'),
                           fit: BoxFit.fill),
                     ),
                   ),
@@ -203,7 +203,7 @@ class PersonInfo extends StatelessWidget {
               const Icon(
                 Icons.group_add_rounded,
                 size: 30,
-                color: Colors.pink,
+                color: Colors.teal,
               ),
             ],
           ),
