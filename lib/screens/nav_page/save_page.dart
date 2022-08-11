@@ -4,21 +4,24 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<Album> createAlbum(String title) async {
+import '../../model/PostApi.dart';
+
+Future<PostApi> createAlbum(String name, String job) async {
   final response = await http.post(
-    Uri.parse('https://jsonplaceholder.typicode.com/albums'),
+    Uri.parse('https://reqres.in/api/users'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-      'title': title,
+    body: jsonEncode(<dynamic, dynamic>{
+      'name': name,
+      'job': job,
     }),
   );
 
   if (response.statusCode == 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
+    return PostApi.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
@@ -26,19 +29,7 @@ Future<Album> createAlbum(String title) async {
   }
 }
 
-class Album {
-  final int id;
-  final String title;
 
-  const Album({required this.id, required this.title});
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
 
 
 
@@ -53,18 +44,19 @@ class SavePage extends StatefulWidget {
 
 class _MyAppState extends State<SavePage> {
   final TextEditingController _controller = TextEditingController();
-  Future<Album>? _futureAlbum;
+  final TextEditingController _controller1 = TextEditingController();
+  Future<PostApi>? _futureAlbum;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Create Data Example',
+      title: 'Create Data',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Create Data Example'),
+          title: const Text('Create Data'),
         ),
         body: Container(
           alignment: Alignment.center,
@@ -79,18 +71,26 @@ class _MyAppState extends State<SavePage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        TextField(
-          controller: _controller,
-          decoration: const InputDecoration(hintText: 'Enter Name'),
+        Container(
+          color: Colors.white,
+          margin: EdgeInsets.only(top: 40, left: 15, right: 15),
+          child: TextField(
+            controller: _controller,
+            decoration: const InputDecoration(hintText: 'Enter Name'),
+          ),
         ),
-        TextField(
-          controller: _controller,
-          decoration: const InputDecoration(hintText: 'Enter Title'),
+        Container(
+          color: Colors.white,
+          margin: EdgeInsets.only(top: 40, left: 15, right: 15),
+          child: TextField(
+            controller: _controller1,
+            decoration: const InputDecoration(hintText: 'Enter Job'),
+          ),
         ),
         ElevatedButton(
           onPressed: () {
             setState(() {
-              _futureAlbum = createAlbum(_controller.text);
+              _futureAlbum = createAlbum(_controller.text, _controller1.text);
             });
           },
           child: const Text('Create Data'),
@@ -99,12 +99,17 @@ class _MyAppState extends State<SavePage> {
     );
   }
 
-  FutureBuilder<Album> buildFutureBuilder() {
-    return FutureBuilder<Album>(
+  FutureBuilder<PostApi> buildFutureBuilder() {
+    return FutureBuilder<PostApi>(
       future: _futureAlbum,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Text(snapshot.data!.title);
+          return Column(
+            children: [
+              Text(snapshot.data!.name.toString()),
+              Text(snapshot.data!.job.toString()),
+            ],
+          );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }

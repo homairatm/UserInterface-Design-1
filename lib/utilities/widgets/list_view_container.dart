@@ -46,9 +46,9 @@ class ListViewContainer extends StatelessWidget {
                   const CircleAvatar(
                     radius: 40,
                     backgroundImage: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP1CjXiU8q8HfAC0pToYnZJ-mQj_bj0DI7EXya0CcXv-AqnAKvYmWehIOP7FL00oq03IY&usqp=CAU'),
+                        'https://cdn.pixabay.com/photo/2017/03/29/04/09/shopping-icon-2184065_1280.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
@@ -56,24 +56,24 @@ class ListViewContainer extends StatelessWidget {
                     children: [
                       Text(
                         name.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Colors.black54,
                         ),
                       ),
                       Text(
                         '${price.toString()} CAD',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           color: Colors.black54,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Text(
                         'ID ${id.toString()}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           color: Colors.black45,
                         ),
