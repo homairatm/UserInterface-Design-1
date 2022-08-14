@@ -123,11 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return SecondScreen();
-                        },
-                      ));
+                      Navigator.pushNamed(context, '/second');
                     },
                     child: PersonInfo(
                       follower: userModel!.data![index].id.toString(),

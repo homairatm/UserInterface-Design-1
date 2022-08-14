@@ -66,15 +66,19 @@ class _SecondScreenState extends State<SecondScreen> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
+                          padding:  EdgeInsets.only(
                               top: 30, left: 10, right: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
+                               GestureDetector(
+                                 onTap:(){
+                                      Navigator.pushNamed(context, '/');
+                                 },
+                                // onPressed: () {
+                                //
+                                //   Navigator.pushNamed(context, '/');
+                                // },
                                 child: const Icon(
                                   Icons.arrow_back_ios_new,
                                   color: Colors.white,
@@ -95,7 +99,7 @@ class _SecondScreenState extends State<SecondScreen> {
                             CircleAvatar(
                               radius: 60,
                               backgroundImage: NetworkImage(
-                                  'https://img.favpng.com/10/23/1/computer-icons-user-profile-avatar-png-favpng-ypy9BWih5X28x0zDEBeemwyx8_t.jpg'),
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTOkHm3_mPQ5PPRvGtU6Si7FJg8DVDtZ47rw&usqp=CAU'),
                             ),
                             SizedBox(height: 20),
                             Text(

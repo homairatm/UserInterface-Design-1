@@ -5,11 +5,18 @@ class LocationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: const Text(
-          'Location Page - coming soon',
-          style: TextStyle(fontSize: 20),
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text('First Screen'),
+      // ),
+      body: Center(
+        child: ElevatedButton(
+          // Within the `FirstScreen` widget
+          onPressed: () {
+            // Navigate to the second screen using a named route.
+            Navigator.pushNamed(context, '/calender');
+          },
+          child: const Text('Location screen'),
         ),
       ),
     );
