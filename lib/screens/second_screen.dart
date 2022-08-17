@@ -6,29 +6,41 @@ import '../model/ActModel.dart';
 import '../utilities/widgets/list_view_container.dart';
 import 'home_screen.dart';
 
-
-
-
 class SecondScreen extends StatefulWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+  static const routename= 'second_screen';
+  String? userName;
+  String? userEmail;
+  String? followers;
+  String? following;
+  String? imageUrl;
+
+  SecondScreen(
+      {Key? key,
+      this.userName,
+      this.userEmail,
+      this.followers,
+      this.following,
+      this.imageUrl})
+      : super(key: key);
 
   @override
   State<SecondScreen> createState() => _SecondScreenState();
 }
 
 class _SecondScreenState extends State<SecondScreen> {
-
   @override
   void initState() {
     getData();
   }
+
   List<ActModel> actModelList = [];
-  Future <List<ActModel>> getData() async {
+
+  Future<List<ActModel>> getData() async {
     var response = await http.get(
-      Uri.parse('https://makeup-api.herokuapp.com/api/v1/products.json'));
+        Uri.parse('https://makeup-api.herokuapp.com/api/v1/products.json'));
     actModelList.clear();
     actModelList = (json.decode(response.body) as List)
-    .map((i) => ActModel.fromJson(i))
+        .map((i) => ActModel.fromJson(i))
         .toList();
     setState(() {
       actModelList;
@@ -37,15 +49,12 @@ class _SecondScreenState extends State<SecondScreen> {
     return actModelList;
   }
 
-
   @override
   Widget build(BuildContext context) {
-     // DateTime now = DateTime.now();
-     // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
+    // DateTime now = DateTime.now();
+    // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
     return Scaffold(
       backgroundColor: Colors.teal.shade50,
-
-
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +64,7 @@ class _SecondScreenState extends State<SecondScreen> {
               child: Stack(
                 children: [
                   Container(
-                    foregroundDecoration: const BoxDecoration(
+                    foregroundDecoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX7F1RisssddR7YffMy81PEYBkxYFwv8fLOiPFUOo7p_Q7pNCjgOSZFr9fdUwo6FX-aTQ&usqp=CAU'),
@@ -66,26 +75,26 @@ class _SecondScreenState extends State<SecondScreen> {
                     child: Column(
                       children: [
                         Padding(
-                          padding:  EdgeInsets.only(
-                              top: 30, left: 10, right: 10),
+                          padding:
+                              EdgeInsets.only(top: 30, left: 10, right: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                               GestureDetector(
-                                 onTap:(){
-                                      Navigator.pushNamed(context, '/');
-                                 },
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/');
+                                },
                                 // onPressed: () {
                                 //
                                 //   Navigator.pushNamed(context, '/');
                                 // },
-                                child: const Icon(
+                                child: Icon(
                                   Icons.arrow_back_ios_new,
                                   color: Colors.white,
                                   size: 25,
                                 ),
                               ),
-                              const Icon(
+                              Icon(
                                 Icons.message_outlined,
                                 color: Colors.white,
                                 size: 25,
@@ -95,15 +104,15 @@ class _SecondScreenState extends State<SecondScreen> {
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             CircleAvatar(
                               radius: 60,
-                              backgroundImage: NetworkImage(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTOkHm3_mPQ5PPRvGtU6Si7FJg8DVDtZ47rw&usqp=CAU'),
+                              backgroundImage:
+                                  NetworkImage(widget.imageUrl.toString()),
                             ),
                             SizedBox(height: 20),
                             Text(
-                              'Tony Stark',
+                              widget.userName.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
@@ -112,7 +121,7 @@ class _SecondScreenState extends State<SecondScreen> {
                             ),
                             SizedBox(height: 3),
                             Text(
-                              'Albany, New York',
+                              widget.userEmail.toString(),
                               style: TextStyle(
                                 fontSize: 17,
                                 color: Colors.white,
@@ -128,9 +137,9 @@ class _SecondScreenState extends State<SecondScreen> {
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
-                                    '450',
+                                    widget.followers.toString(),
                                     style: TextStyle(
                                       fontSize: 25,
                                       color: Colors.white,
@@ -149,9 +158,9 @@ class _SecondScreenState extends State<SecondScreen> {
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
-                                    '15',
+                                    widget.following.toString(),
                                     style: TextStyle(
                                       fontSize: 25,
                                       color: Colors.white,
@@ -194,7 +203,9 @@ class _SecondScreenState extends State<SecondScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(
+              height: 5,
+            ),
             const Padding(
               padding: EdgeInsets.only(left: 8, bottom: 8),
               child: Text(
@@ -206,31 +217,18 @@ class _SecondScreenState extends State<SecondScreen> {
                 ),
               ),
             ),
-
             Expanded(
               flex: 2,
 
               child: ListView.builder(
-                      itemCount: actModelList.length,
-
-                      itemBuilder: (context, index){
-
+                  itemCount: actModelList.length,
+                  itemBuilder: (context, index) {
                     return ListViewContainer(
                       id: actModelList[index].id.toString(),
                       name: actModelList[index].name,
                       price: actModelList[index].price,
-
                     );
-                  }
-                  ),
-
-
-
-
-
-
-
-
+                  }),
 
               //     Column(
               //   children: [

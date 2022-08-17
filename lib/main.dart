@@ -20,26 +20,61 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      onGenerateRoute: generateRoute,
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
       ),
+
+
       //home: const MainPage(),
       //home: MainPage(),
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) =>  MainPage(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/home': (context) =>  HomeScreen(),
-        '/second': (context) =>  SecondScreen(),
-        '/location': (context) =>  LocationPage(),
-        '/calender': (context) =>  CalenderPage(),
-        '/save': (context) =>  SavePage(),
+      //initialRoute: '/',
+      //routes: {
+        // '/': (context) =>  MainPage(),
+        // '/home': (context) =>  HomeScreen(),
+        // '/second': (context) =>  SecondScreen(),
+        // '/location': (context) =>  LocationPage(),
+        // '/calender': (context) =>  CalenderPage(),
+        // '/save': (context) =>  SavePage(),
 
-      },
+     // },
+
+
+
     );
+
   }
 }
+
+Route<dynamic>? generateRoute(RouteSettings settings) {
+  final arg = settings.arguments;
+  if (settings.name == '/') {
+    return MaterialPageRoute(builder: (context) => MainPage());
+  } else if (settings.name == 'first_screen') {
+    MaterialPageRoute(builder: (context) => HomeScreen());
+  } else if (settings.name == SecondScreen.routename) {
+    final argument = arg as SecondScreen;
+    return MaterialPageRoute(
+      builder: (context) =>
+          SecondScreen(
+            userName: argument.userName,
+            userEmail: argument.userEmail,
+            following: argument.following,
+            followers: argument.followers,
+            imageUrl: argument.imageUrl,
+          ),
+    );
+
+
+    // } else if(settings.name==Extra1.routename){
+    //   return MaterialPageRoute(builder: (context)=>Extra1());
+    // }else if(settings.name==MainPage.routename){
+    //   return MaterialPageRoute(builder: (context)=>MainPage());
+    // }
+
+  }
+
+  }
 
 

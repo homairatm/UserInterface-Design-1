@@ -1,4 +1,3 @@
-
 import 'package:bracit_task1/screens/home_screen.dart';
 import 'package:bracit_task1/screens/nav_page/calender_page.dart';
 import 'package:bracit_task1/screens/nav_page/location_page.dart';
@@ -36,6 +35,7 @@ class _MainPageState extends State<MainPage> {
       resizeToAvoidBottomInset : false,
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+
         onTap: onTapPage,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.teal.shade200,

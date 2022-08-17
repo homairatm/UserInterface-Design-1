@@ -123,12 +123,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/second');
+                      // Navigator.pushNamed(context, '/second');
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondScreen(
+                        followers: userModel!.data![index].id.toString(),
+                        userName: userModel!.data![index].firstName.toString(),
+                        imageUrl: userModel!.data![index].avatar.toString(),
+                        userEmail: userModel!.data![index].email.toString(),
+
+                      )));
                     },
                     child: PersonInfo(
                       follower: userModel!.data![index].id.toString(),
                       name: userModel!.data![index].firstName.toString(),
                       url: userModel!.data![index].avatar.toString(),
+                      email: userModel!.data![index].email.toString(),
                     ),
                   );
                 },
@@ -145,12 +153,13 @@ class PersonInfo extends StatelessWidget {
   final String url;
   final String name;
   final String follower;
-
+  final String email;
   const PersonInfo({
     Key? key,
     required this.url,
     required this.name,
     required this.follower,
+    required this.email,
   }) : super(key: key);
 
   @override

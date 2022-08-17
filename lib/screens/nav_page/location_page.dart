@@ -10,6 +10,7 @@ class LocationPage extends StatelessWidget {
       //   title: const Text('First Screen'),
       // ),
       body: Center(
+        //key: Navigator,
         child: ElevatedButton(
           // Within the `FirstScreen` widget
           onPressed: () {
@@ -17,6 +18,7 @@ class LocationPage extends StatelessWidget {
             Navigator.pushNamed(context, '/calender');
           },
           child: const Text('Location screen'),
+
         ),
       ),
     );
